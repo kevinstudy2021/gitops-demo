@@ -40,6 +40,7 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ${{ kevinstudy }}/frontend:${{ steps.vars.outputs.sha_short }}
+<<<<<<< HEAD
       - name: Update helm values.yaml
         uses: fjogeleit/yaml-update-action@main
         with:
@@ -52,6 +53,21 @@ jobs:
               "backend.tag": "${{ steps.vars.outputs.sha_short }}",
               "frontend.tag": "${{ steps.vars.outputs.sha_short }}"
             }
+=======
+
+      - name: Update helm values.yaml
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'helm/values.yaml'
+          commitChange: true
+          branch: main
+          message: 'Update Image Version to ${{ steps.vars.outputs.sha_short }}'
+          changes: |
+            {
+              "backend.tag": "${{ steps.vars.outputs.sha_short }}",
+              "frontend.tag": "${{ steps.vars.outputs.sha_short }}"
+            }
+>>>>>>> 06aebf65b44366d095de6f8112e7cd741a33a3f5
       # - name: Update helm values.yaml
       #   uses: fjogeleit/yaml-update-action@main
       #   with:
